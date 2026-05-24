@@ -6,20 +6,12 @@ const CLIENT_ID = "1506964509275852872";
 const commands = [
     new SlashCommandBuilder()
         .setName('whitelist')
-        .setDescription('Whitelist user')
-        .addStringOption(option =>
-            option.setName('username')
-                .setDescription('Tên Roblox')
-                .setRequired(true)),
-
-    new SlashCommandBuilder()
-        .setName('unwhitelist')
-        .setDescription('Remove whitelist')
+        .setDescription('Add user vào whitelist')
         .addStringOption(option =>
             option.setName('username')
                 .setDescription('Tên Roblox')
                 .setRequired(true))
-];
+].map(cmd => cmd.toJSON());
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
 
@@ -28,5 +20,5 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
         Routes.applicationCommands(CLIENT_ID),
         { body: commands }
     );
-    console.log("Đã tạo lệnh");
+    console.log("Đã deploy command");
 })();
